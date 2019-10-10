@@ -1,4 +1,8 @@
 # Support
+Please notice: Currently all updated manuals are at: https://www.skaarhoj.com/support/manuals/
+This is a work in progress project
+
+
 Manuals for Device Cores and other relevant support files
 
 Plan is to migrate Manual and support files from kasperskaarhoj/SKAARHOJ-Open-Engineering
