@@ -19,7 +19,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 		self.request.settimeout(1)
 		busy = False;	# This keeps track of the busy/ready state of the client. We can use this to make sure we are not spamming it with data
 		
-		HWCcolor = [2] * 256
+		HWCcolor = [2] * 8000
 
 		while True:
 			try:
