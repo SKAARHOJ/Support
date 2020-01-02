@@ -330,10 +330,14 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 							HWCtracker[HWcClient] = HWcServer;
 
 						# Parse down trigger:
-						match = re.search(r"^HWC#([0-9]+)(.([0-9]+))=Down$", line.decode('ascii'))
+						match = re.search(r"^HWC#([0-9]+)(.([0-9]+)|.*)=Down$", line.decode('ascii'))
 						if match:
+							print("KASPER");
 							HWc = int(match.group(1));	# Extract the HWc number of the keypress from the match
-							FourWayDirection = int(match.group(3));	# Extract the HWc number of the keypress from the match
+							if (match.group(2)):
+								FourWayDirection = int(match.group(3));	# Extract the HWc number of the keypress from the match
+							else:
+								FourWayDirection = 4;
 
 							# Highlight the button and turn on binary output:
 							outputline = "HWC#{}={}\n".format(HWc, 4 | 0x20)
@@ -358,7 +362,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 											self.request.sendall(imageStrings[HWCdispContent[HWc]-len(txtStrings)][b].format(HWCtracker[a]).encode('ascii')+b"\n")
 
 						# Parse Up trigger:
-						match = re.search(r"^HWC#([0-9]+)(.([0-9]+))=Up$", line.decode('ascii'))
+						match = re.search(r"^HWC#([0-9]+)(.([0-9]+)|.*)=Up$", line.decode('ascii'))
 						if match:
 							HWc = int(match.group(1));	# Extract the HWc number of the keypress from the match
 
