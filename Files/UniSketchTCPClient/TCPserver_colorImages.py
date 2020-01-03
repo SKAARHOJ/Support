@@ -30,7 +30,50 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 
 				# Basic formatting
 			'HWCt#{}=||||1|Color|Images|||||||||1|9|4',	# Header
-			'HWCt#{}=-1234|1||Box Upper:||x:|y:|4567|2',	# Box type 2
+
+			'HWCt#{}=||||1|Black|Pixels|||||||||1|9|4||1|85',	
+			'HWCt#{}=||||1|White|Pixels|||||||||1|9|4||2',	
+			'HWCt#{}=||||1|Cream|Pixels|||||||||1|9|4||3',	
+			'HWCt#{}=||||1|Red|Pixels|||||||||1|9|4||4',	
+			'HWCt#{}=||||1|Rose|Pixels|||||||||1|9|4||5',	
+			'HWCt#{}=||||1|Pink|Pixels|||||||||1|9|4||6',	
+			'HWCt#{}=||||1|Purple|Pixels|||||||||1|9|4||7',	
+			'HWCt#{}=||||1|Amber|Pixels|||||||||1|9|4||8',	
+			'HWCt#{}=||||1|Yellow|Pixels|||||||||1|9|4||9',	
+			'HWCt#{}=||||1|Dark Blue|Pixels|||||||||1|9|4||10',	
+			'HWCt#{}=||||1|Blue|Pixels|||||||||1|9|4||11',	
+			'HWCt#{}=||||1|Ice|Pixels|||||||||1|9|4||12',	
+			'HWCt#{}=||||1|Cyan|Pixels|||||||||1|9|4||13',	
+			'HWCt#{}=||||1|Spring|Pixels|||||||||1|9|4||14',	
+			'HWCt#{}=||||1|Green|Pixels|||||||||1|9|4||15',	
+			'HWCt#{}=||||1|RGB (red)|Pixels|||||||||1|9|4||112',	
+			'HWCt#{}=||||1|RGB (green)|Pixels|||||||||1|9|4||77',	
+
+			'HWCt#{}=||||1|Black|Background|||||||||1|9|4|||1',	
+			'HWCt#{}=||||1|White|Background|||||||||1|9|4||1|2',	
+			'HWCt#{}=||||1|Cream|Background|||||||||1|9|4||1|3',	
+			'HWCt#{}=||||1|Red|Background|||||||||1|9|4|||4',	
+			'HWCt#{}=||||1|Rose|Background|||||||||1|9|4|||5',	
+			'HWCt#{}=||||1|Pink|Background|||||||||1|9|4|||6',	
+			'HWCt#{}=||||1|Purple|Background|||||||||1|9|4|||7',	
+			'HWCt#{}=||||1|Amber|Background|||||||||1|9|4|||8',	
+			'HWCt#{}=||||1|Yellow|Background|||||||||1|9|4|||9',	
+			'HWCt#{}=||||1|Dark Blue|Background|||||||||1|9|4|||10',	
+			'HWCt#{}=||||1|Blue|Background|||||||||1|9|4|||11',	
+			'HWCt#{}=||||1|Ice|Background|||||||||1|9|4|||12',	
+			'HWCt#{}=||||1|Cyan|Background|||||||||1|9|4|||13',	
+			'HWCt#{}=||||1|Spring|Background|||||||||1|9|4|||14',	
+			'HWCt#{}=||||1|Green|Background|||||||||1|9|4|||15',	
+			'HWCt#{}=||||1|RGB (red)|Background|||||||||1|9|4|||112',	
+			'HWCt#{}=||||1|RGB (gray)|Background|||||||||1|9|4|||85',	
+
+			'HWCt#{}=||||1|White on|Red|||||||||1|9|4||2|4',	
+			'HWCt#{}=||||1|Black on|Purple|||||||||1|9|4||1|7',	
+			'HWCt#{}=||||1|Yellow on|Blue|||||||||1|9|4||9|11',	
+			'HWCt#{}=||||1|Yellow on|Blue Inverted|||||||||1|9|4|1|9|11',	
+			'HWCt#{}=||||1|Black on|Gray (RGB)|||||||||1|9|4||1|85',	
+
+			'HWCt#{}=-1234|1||Inverted||x:|y:|4567|2||||||||||1',	# Box type 2
 			'HWCt#{}=',	# Blank out display with empty string
 			]
 
