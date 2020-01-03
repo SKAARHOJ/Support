@@ -317,7 +317,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 		imageOrText = False
 
 		#sendValue = 0;
-		HWCtracker = [0] * 256
+		HWCtracker = [0] * 8000
 
 		while True:
 			try:
@@ -333,7 +333,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 					print(millis-lastMillis)
 					lastMillis = millis
 					
-					for a in range (0, 128):
+					for a in range (0, 8000):
 						if HWCtracker[a] > 0:
 							line = "HWC#{}={}\n".format(HWCtracker[a],(2+HWCtracker[a]%3) if not dimmed else 5)
 							self.request.sendall(line.encode('ascii'))
@@ -346,12 +346,12 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 
 					if not imageOrText:
 						imageOrText = True
-						for a in range (0, 128):
+						for a in range (0, 8000):
 							if HWCtracker[a] > 0:
 								self.request.sendall(txtStrings[(rotationIndex+HWCtracker[a])%len(txtStrings)].format(HWCtracker[a]).encode('ascii')+b"\n")
 					else:
 						imageOrText = False
-						for a in range (0, 128):
+						for a in range (0, 8000):
 							if HWCtracker[a] > 0:
 								self.request.sendall(imageStrings[(rotationIndex+HWCtracker[a])%len(imageStrings)][0].format(HWCtracker[a]).encode('ascii')+b"\n")
 								self.request.sendall(imageStrings[(rotationIndex+HWCtracker[a])%len(imageStrings)][1].format(HWCtracker[a]).encode('ascii')+b"\n")
@@ -387,15 +387,6 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 							HWcServer = int(match.group(2));	# Extract the HWc number of the keypress from the match
 							HWcClient = int(match.group(1));	# Extract the HWc number of the keypress from the match
 							HWCtracker[HWcClient] = HWcServer;
-
-						match = re.search(r"^HWC#([0-9]+)=(.+)$", line.decode('ascii'))
-						if match:
-							HWcActivated = match.group(1)
-							Command = match.group(2)
-							for a in range (0, 128):
-								if HWCtracker[a] > 0:
-									self.request.sendall('HWCt#{}=1|11||||{}|{}'.format(HWCtracker[a],HWcActivated,Command).encode('ascii')+b"\n")
-
 				else:
 					print("{} closed".format(self.client_address[0]))
 					break
