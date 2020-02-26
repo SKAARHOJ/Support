@@ -1165,9 +1165,9 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 		lastMillis = 0
 
 		#sendValue = 0;
-		HWCtracker = [0] * 256
-		HWCcolor = [2] * 256
-		HWCdispContent = [0] * 256
+		HWCtracker = [0] * 8000
+		HWCcolor = [2] * 8000
+		HWCdispContent = [0] * 8000
 
 		while True:
 			try:
@@ -1237,7 +1237,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 							else:
 								HWCdispContent[HWc] = (HWCdispContent[HWc] + (len(txtStrings)+len(imageStrings)) - 1)%(len(txtStrings)+len(imageStrings))
 
-							for a in range (0, 255):
+							for a in range (0, len(HWCtracker)):
 								if HWCtracker[a] > 0 and (FourWayDirection == 2 or FourWayDirection == 8 or HWCtracker[a] == HWc):
 									if (HWCdispContent[HWc] < len(txtStrings)):
 										self.request.sendall(txtStrings[HWCdispContent[HWc]].format(HWCtracker[a]).encode('ascii')+b"\n")
