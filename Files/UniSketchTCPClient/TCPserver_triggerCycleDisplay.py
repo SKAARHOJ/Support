@@ -355,7 +355,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 							outputline = "HWC#{}={}\n".format(HWc,5)
 
 						# Parse down trigger:
-						match = re.search(r"^HWC#([0-9]+)=Down$", line.decode('ascii'))
+						match = re.search(r"^HWC#([0-9]+)(.([0-9]+)|.*)=Down$", line.decode('ascii'))
 						if match:
 							HWc = int(match.group(1));	# Extract the HWc number of the keypress from the match
 
@@ -377,7 +377,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 								outputline = txtStrings[HWCgraphic%(len(imageStrings)+len(txtStrings))-len(imageStrings)].format(HWc) + "\n";
 
 						# Parse Up trigger:
-						match = re.search(r"^HWC#([0-9]+)=Up$", line.decode('ascii'))
+						match = re.search(r"^HWC#([0-9]+)(.([0-9]+)|.*)=Up$", line.decode('ascii'))
 						if match:
 							HWc = int(match.group(1));	# Extract the HWc number of the keypress from the match
 

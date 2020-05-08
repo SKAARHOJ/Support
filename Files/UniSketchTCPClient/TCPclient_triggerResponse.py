@@ -29,7 +29,7 @@ while True:
 	else:
 		if data != b'':
 			for line in data.split(b"\n"):
-				outputline = ""
+				outputline = "ClearDisplays\n"
 				print("Server {} sent: '{}<NL>'".format(HOST, line.decode('ascii')))
 
 				if line == b"BSY":
@@ -41,15 +41,20 @@ while True:
 					match = re.search(r"^HWC#([0-9]+)(.([0-9]+)|.*)=Down$", line.decode('ascii'))
 					if match:
 						print("Sending a bunch of key change commands:\n")
-						for a in range (1, 50):
+						for a in range (1, 40):
 							line = "HWC#{}={}\n".format(a,4)
 							outputline = outputline+line
-							# s.sendall(line.encode('ascii'))
+						#	s.sendall(line.encode('ascii'))
 							
 							line = "HWCc#{}={}\n".format(a,colorV | 0x80)
-							colorV = (colorV + 1)%17
 							outputline = outputline+line
-							# s.sendall(line.encode('ascii'))
+						#	s.sendall(line.encode('ascii'))
+
+							line = "HWCt#{}={}\n".format(a,colorV | 0x80)
+							outputline = outputline+line
+						#	s.sendall(line.encode('ascii'))
+
+						colorV = (colorV + 1)%17
 
 						s.sendall(outputline.encode('ascii'))
 		else:
