@@ -55,7 +55,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 							outputline = "HWC#{}={}\n".format(HWc,5)
 
 						# Parse down trigger:
-						match = re.search(r"^HWC#([0-9]+)=Down$", line.decode('ascii'))
+						match = re.search(r"^HWC#([0-9]+)(.([0-9]+)|.*)=Down$", line.decode('ascii'))
 						if match:
 							HWc = int(match.group(1));	# Extract the HWc number of the keypress from the match
 
@@ -67,7 +67,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 							outputline = outputline + "HWCc#{}={}\n".format(HWc,HWCcolor[HWc] | 0x80)	# OR'ing 0x80 to identify the color as an externally imposed color. By default the least significant 6 bits will be an index to a color, but you can OR 0x40 and it will instead accept a rrggbb combination.
 
 						# Parse Up trigger:
-						match = re.search(r"^HWC#([0-9]+)=Up$", line.decode('ascii'))
+						match = re.search(r"^HWC#([0-9]+)(.([0-9]+)|.*)=Up$", line.decode('ascii'))
 						if match:
 							HWc = int(match.group(1));	# Extract the HWc number of the keypress from the match
 

@@ -5,7 +5,7 @@ import socket
 log = logging.getLogger('udp_server')
 
 
-def udp_server(host='', port=1338):
+def udp_server(host='', port=8901):
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
