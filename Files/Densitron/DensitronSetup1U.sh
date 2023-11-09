@@ -67,6 +67,27 @@ echo "Exec=chromium-browser --app=http://$ipToUse --start-fullscreen" >> $file2
 
 cat $file2
 
+echo "Disabling screen-saver"
+
+cd /etc/xdg/lxsession/LXDE-pi/
+file3="./autostart"
+
+if [ -f "$file3" ] ; then
+    echo "autostart already exists"
+    echo "Deleting old autostart"
+    rm "$file3"
+fi
+
+echo "Creating autostart"
+echo touch $file3
+echo "@lxpanel --profile LXDE-pi" >> $file3
+echo "@pcmanfm --desktop --profile LXDE-pi" >> $file3
+echo "@xscreensaver -no-splash" >> $file3
+echo "@xset s off" >> $file3
+echo "@xset -dpms" >> $file3
+
+cat $file3
+
 echo "Done!"
 echo "Do not forget to unplug your HDMI monitor if it is still attached!"
 echo "Please reboot your system!"
