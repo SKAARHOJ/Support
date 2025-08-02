@@ -360,7 +360,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 			else:
 				if self.data != b'':
 					for line in self.data.split(b"\n"):
-						print("Client {} sent: '{}<NL>'".format(self.client_address[0], line.decode('ascii')))
+						print("Client {} sent: '{}<NL>'".format(self.client_address[0], line.decode('utf-8', errors='replace')))
 
 						# just send back the same data, but upper-cased
 						if line == b"list":
@@ -382,7 +382,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 
 						# Parse map= and turn on the button in dimmed mode for each. 
 						# We could use the data from map to track which HWcs are active on the panel
-						match = re.search(r"^map=([0-9]+):([0-9]+)$", line.decode('ascii'))
+						match = re.search(r"^map=([0-9]+):([0-9]+)$", line.decode('utf-8', errors='replace'))
 						if match:
 							HWcServer = int(match.group(2));	# Extract the HWc number of the keypress from the match
 							HWcClient = int(match.group(1));	# Extract the HWc number of the keypress from the match
