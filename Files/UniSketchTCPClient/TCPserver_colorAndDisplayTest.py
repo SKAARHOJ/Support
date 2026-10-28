@@ -327,21 +327,24 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 				pass
 					# In case 
 				if not busy:
+
 					# self.request.settimeout(50)
 
 					millis = int(round(time.time() * 1000))
-					print(millis-lastMillis)
+					print("Millis: {}".format(millis-lastMillis))
 					lastMillis = millis
 					
 					for a in range (0, 8000):
 						if HWCtracker[a] > 0:
 							line = "HWC#{}={}\n".format(HWCtracker[a],(2+HWCtracker[a]%3) if not dimmed else 5)
 							self.request.sendall(line.encode('ascii'))
+							# print("Sent: {}".format(line.strip()))
 							
 							if dimmed:
 								line = "HWCc#{}={}\n".format(HWCtracker[a],color | 0x80)
 								color = (color+1)%17
 								self.request.sendall(line.encode('ascii'))
+								# print("Sent: {}".format(line.strip()))
 					#dimmed = not dimmed	# If full on, the controller crashes - too much power consumed! Maybe LED values need be deminished
 
 					if not imageOrText:
